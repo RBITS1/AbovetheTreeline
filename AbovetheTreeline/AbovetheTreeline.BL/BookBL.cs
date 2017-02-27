@@ -68,7 +68,7 @@ namespace AbovetheTreeline.BL
         public Book GetBookBySelectedISBN(string isbn)
         {
 
-            return books.Single(x => x.bookdetail.isbn == isbn);
+            return books.FirstOrDefault(x => x.bookdetail.isbn == isbn);
 
         }
 
@@ -81,7 +81,14 @@ namespace AbovetheTreeline.BL
         public Book GetBookBySelectedTitle(string title)
         {
 
-            return books.Single(x => x.Title == title);
+            return books.FirstOrDefault(x => x.Title == title);
+
+        }
+
+        public Book GetBookByID(int id)
+        {
+
+            return books.FirstOrDefault(x => x.Id == id);
 
         }
 

@@ -23,11 +23,17 @@ namespace AbovetheTreeline.Controllers
             return books.AllBooksBySelectedGender(gender);
         }
         // GET api/books?price=100
-        public IEnumerable<Book> Get(decimal price)
+        public  IEnumerable<Book> Get(decimal price)
         {
             return books.AllBooksBySelectedPrice(price);
         }
 
+
+        // GET api/books/1
+        public IHttpActionResult Getbook(int id)
+        {
+            return Ok(books.GetBookByID(id));
+        }
 
         // POST api/values
         public void Post([FromBody]string value)
