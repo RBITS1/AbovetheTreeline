@@ -176,6 +176,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -255,6 +256,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AbovetheTreeline.BL\AbovetheTreeline.BL.csproj">
+      <Project>{60f49ac1-af2e-4853-9a44-ba5d5482f6ed}</Project>
+      <Name>AbovetheTreeline.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AbovetheTreeline.DataLayer\AbovetheTreeline.DataLayer.csproj">
+      <Project>{4f1091c5-6de7-4f9d-a223-5a2cfd350e9e}</Project>
+      <Name>AbovetheTreeline.DataLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

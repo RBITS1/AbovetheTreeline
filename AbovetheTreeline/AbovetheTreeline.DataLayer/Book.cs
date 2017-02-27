@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AbovetheTreeline.data
+namespace AbovetheTreeline.DataLayer
 {
     public class Book
     {
