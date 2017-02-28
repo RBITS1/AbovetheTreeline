@@ -23,7 +23,7 @@ function booksList(apiUrl) {
             // On success, 'data' contains a list of products.
             booksListSuccess(data);
         });
-
+    dtable();
 }
 
 
@@ -73,6 +73,12 @@ function handleException(request, message,
     alert(msg);
 }
 
+function dtable() {
+    //$('#bookTable').DataTable();
+    
+}
+
 $(document).ready(function () {
     booksList('http://abovethetreeline20170226103631.azurewebsites.net/api/books');
+    
 });

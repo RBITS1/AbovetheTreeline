@@ -10,11 +10,15 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
      <link href="css/custom.css" rel="stylesheet">
+      <link href=" http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
+  
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+      
       <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <script src="./js/bootstrap.min.js"></script>
-      <script src="./js/books.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -47,8 +51,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">HOME<span class="sr-only">(current)</span></a></li>
-        <li ><a href="#">BOOKS LIST</a></li>
+        <li ><a href="#">HOME<span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="#">BOOKS LIST</a></li>
         <li><a href="#">ARTICLES</a></li>
         <li><a href="#">WRITERS</a></li>
         <li><a href="#">ABOUT US</a></li>
@@ -196,3 +200,91 @@
  
   </body>
 </html>
+
+<script src="js/books.js"></script>
+<script>
+
+
+
+    function getAllBook() {
+        booksList('http://abovethetreeline20170226103631.azurewebsites.net/api/books');
+    }
+    function BooksAbove50() {
+        booksList('http://abovethetreeline20170226103631.azurewebsites.net/api/books?price=100');
+    }
+    function BooksUnder50() {
+        booksList('http://abovethetreeline20170226103631.azurewebsites.net/api/books?price=50');
+    }
+    function Bookstowomen() {
+        booksList('http://abovethetreeline20170226103631.azurewebsites.net/api/books?gender=F');
+    }
+    function Bookstomen() {
+        booksList('http://abovethetreeline20170226103631.azurewebsites.net/api/books?gender=M');
+    }
+
+    function booksList(apiUrl) {
+        $.getJSON(apiUrl)
+            .done(function (data) {
+                // On success, 'data' contains a list of products.
+                booksListSuccess(data);
+            });
+        dtable();
+    }
+
+
+    function booksListSuccess(books) {
+        $('#bookTable tbody').empty();
+        // Iterate over the collection of data
+        $.each(books, function (index, book) {
+            // Add a row to the book table
+            bookAddRow(book);
+        });
+    }
+
+
+    function bookAddRow(book) {
+        // Check if <tbody> tag exists, add one if not
+        if ($("#bookTable tbody").length == 0) {
+            $("#bookTable").append("<tbody></tbody>");
+        }
+        // Append row to <table>
+        $("#bookTable tbody").append(
+            bookBuildTableRow(book));
+    }
+
+    function bookBuildTableRow(book) {
+        var ret =
+            "<tr>" +
+            "<td>" + book.Title + "</td>" +
+            "<td>" + book.AuthorName + "</td>" +
+            "<td>" + book.bookdetail.isbn + "</td>" +
+            "<td>" + book.bookdetail.Year + "</td>" +
+            "<td>" + book.bookdetail.Price + "</td>" +
+            "<td>" + book.bookdetail.Genre + "</td>" +
+            "</tr>";
+        return ret;
+    }
+
+
+    function handleException(request, message,
+        error) {
+        var msg = "";
+        msg += "Code: " + request.status + "\n";
+        msg += "Text: " + request.statusText + "\n";
+        if (request.responseJSON != null) {
+            msg += "Message" +
+                request.responseJSON.Message + "\n";
+        }
+        alert(msg);
+    }
+
+    function dtable() {
+        //$('#bookTable').DataTable();
+
+    }
+
+    $(document).ready(function () {
+        booksList('http://abovethetreeline20170226103631.azurewebsites.net/api/books');
+
+    });
+</script>
