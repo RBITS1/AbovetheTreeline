@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-
+using Newtonsoft.Json.Serialization;
+using System.Web.Http.Cors;
 namespace AbovetheTreeline
 {
     public static class WebApiConfig
@@ -14,11 +15,15 @@ namespace AbovetheTreeline
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            config.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
+            config.Formatters.Add(GlobalConfiguration.Configuration.Formatters.JsonFormatter);
         }
     }
 }

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbovetheTreeline.DataLayer"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbovetheTreeline.BL", "AbovetheTreeline.BL\AbovetheTreeline.BL.csproj", "{60F49AC1-AF2E-4853-9A44-BA5D5482F6ED}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HTML", "HTML", "{01C652D9-9AB3-4C6F-AE9F-48F940B39C1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
